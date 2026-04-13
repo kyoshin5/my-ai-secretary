@@ -1,0 +1,32 @@
+name: 260413_AI_Assistant
+
+on:
+  schedule:
+    # 하루 4회 자동 실행 (한국 시간 오전 9:05, 오후 1:00, 오후 3:40, 밤 11:30)
+    - cron: '5 0 * * *'
+    - cron: '0 4 * * *'
+    - cron: '40 6 * * *'
+    - cron: '30 14 * * *'
+  workflow_dispatch: # 수동 실행 버튼
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install yfinance feedparser google-generativeai requests
+
+      - name: Run AI Bot
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python ai_bot.py
