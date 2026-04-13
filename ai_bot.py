@@ -19,7 +19,7 @@ genai.configure(api_key=GEMINI_API_KEY)
 # 2. 260413 투자 상담 페르소나 및 3.1 Pro 뇌 이식
 # ==========================================
 model = genai.GenerativeModel(
-    model_name='gemini-3.1-pro-preview',
+    model_name='gemini-3-flash-preview',
     system_instruction="""
     당신은 최고의 투자 상담가 '260413 투자 상담'입니다. 
     사용자의 최종 목표는 '8월 1일까지 2,400만 원 확보'입니다.
