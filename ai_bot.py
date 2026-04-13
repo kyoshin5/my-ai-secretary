@@ -2,14 +2,15 @@ import yfinance as yf
 import feedparser
 import google.generativeai as genai
 import requests
+import os
 from datetime import datetime
 
 # ==========================================
-# 1. 회원님 전용 인증키 및 텔레그램 세팅 (입력 완료)
+# 1. 환경 변수에서 키 불러오기 (보안 적용 완료)
 # ==========================================
-GEMINI_API_KEY = "AIzaSyCmnpKxw-psqlWvz-gm9MCbnLVnlUCzRyY"
-TELEGRAM_BOT_TOKEN = "8797156982:AAGhZ2AH0sublWRkzlPxecPf2e81641vylk"
-TELEGRAM_CHAT_ID = "6266187308"
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
 # 구글 Gemini API 인증
 genai.configure(api_key=GEMINI_API_KEY)
